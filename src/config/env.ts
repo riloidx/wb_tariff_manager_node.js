@@ -22,7 +22,10 @@ export const env = {
     PORT: Number(getEnvVar("POSTGRES_PORT", "5432")),
   },
 
-  WB_API_TOKEN: getEnvVar("WB_API_TOKEN"),
+  WB: {
+    API_TOKEN: getEnvVar("WB_API_TOKEN"),
+    URL: getEnvVar("WB_API_URL")
+  },
 
   GOOGLE: {
     SERVICE_ACCOUNT_EMAIL: getEnvVar("GOOGLE_SERVICE_ACCOUNT_EMAIL"),

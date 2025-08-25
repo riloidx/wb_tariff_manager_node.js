@@ -30,5 +30,6 @@ export const env = {
   GOOGLE: {
     SERVICE_ACCOUNT_EMAIL: getEnvVar("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
     PRIVATE_KEY: getEnvVar("GOOGLE_PRIVATE_KEY"),
+    SPREADSHEET_IDS: getEnvVar("GOOGLE_SPREADSHEET_IDS", "").split(",").map((s) => s.trim()).filter(Boolean),
   },
 };

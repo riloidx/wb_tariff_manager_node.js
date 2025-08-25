@@ -2,14 +2,14 @@ export interface BoxTariff {
   id: number;
   geoName: string;
   warehouseName: string;
-  boxDeliveryBase: number;
-  boxDeliveryCoefExpr: number;
-  boxDeliveryLiter: number;
-  boxDeliveryMarketplaceBase: number;
-  boxDeliveryMarketplaceCoefExpr: number;
-  boxDeliveryMarketplaceLiter: number;
-  boxStorageBase: number;
-  boxStorageCoefExpr: number;
-  boxStorageLiter: number;
+  boxDeliveryBase: number | null;
+  boxDeliveryCoefExpr: number | null;
+  boxDeliveryLiter: number | null;
+  boxDeliveryMarketplaceBase: number | null;
+  boxDeliveryMarketplaceCoefExpr: number | null;
+  boxDeliveryMarketplaceLiter: number | null;
+  boxStorageBase: number | null;
+  boxStorageCoefExpr: number | null;
+  boxStorageLiter: number | null;
   date: Date;
 }

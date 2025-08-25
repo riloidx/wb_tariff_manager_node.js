@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      WB_API_URL: ${WB_API_URL}
+      WB_API_TOKEN: ${WB_API_TOKEN}
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${GOOGLE_SERVICE_ACCOUNT_EMAIL}
+      GOOGLE_PRIVATE_KEY: ${GOOGLE_PRIVATE_KEY}
+      GOOGLE_SPREADSHEET_IDS: ${GOOGLE_SPREADSHEET_IDS}
+    command: sh -c "npm run migrate:latest && npm run dev"
+    ports:
+      - "3000:3000"
+
+volumes:
+  dbdata:
+
+

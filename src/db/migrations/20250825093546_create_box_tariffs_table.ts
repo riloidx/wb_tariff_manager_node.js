@@ -2,24 +2,25 @@ import type { Knex } from "knex";
 
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.createTable('box-tariffs', (table) => {
+  await knex.schema.createTable('box_tariffs', (table) => {
     table.increments('id').primary();
     table.string('geo_name').notNullable();
     table.string('warehouse_name').notNullable();
-    table.decimal('box_delivery_base', 10, 2).notNullable();
-    table.decimal('box_delivery_coef_expr', 10, 2).notNullable();
-    table.decimal('box_delivery_liter', 10, 2).notNullable();
-    table.decimal('box_delivery_marketplace_base', 10, 2).notNullable();
-    table.decimal('box_delivery_marketplace_coef_expr', 10, 2).notNullable();
-    table.decimal('box_delivery_marketplace_liter', 10, 2).notNullable();
-    table.decimal('box_storage_base', 10, 2).notNullable();
-    table.decimal('box_storage_coef_expr', 10, 2).notNullable();
-    table.decimal('box_storage_liter', 10, 2).notNullable();
+    table.decimal('box_delivery_base', 10, 2).nullable();
+    table.decimal('box_delivery_coef_expr', 10, 2).nullable();
+    table.decimal('box_delivery_liter', 10, 2).nullable();
+    table.decimal('box_delivery_marketplace_base', 10, 2).nullable();
+    table.decimal('box_delivery_marketplace_coef_expr', 10, 2).nullable();
+    table.decimal('box_delivery_marketplace_liter', 10, 2).nullable();
+    table.decimal('box_storage_base', 10, 2).nullable();
+    table.decimal('box_storage_coef_expr', 10, 2).nullable();
+    table.decimal('box_storage_liter', 10, 2).nullable();
     table.date('date').notNullable();
+    table.unique(['date', 'geo_name', 'warehouse_name']);
   });
 }
 
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTable('delivery_info');
+  await knex.schema.dropTable('box_tariffs');
 }

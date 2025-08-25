@@ -1,4 +1,4 @@
-interface BoxTariff {
+export interface BoxTariff {
   id: number;
   geoName: string;
   warehouseName: string;

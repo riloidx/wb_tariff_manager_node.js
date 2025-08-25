@@ -1,6 +1,6 @@
 import knex from "knex";
-import config from "../../knexfile"; 
-import { env } from "../config/env";
+import config from "../../knexfile.js"; 
+import { env } from "../config/env.js";
 
 const environment = env.NODE_ENV || "development";
 

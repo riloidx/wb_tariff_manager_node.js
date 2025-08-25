@@ -1,4 +1,4 @@
-interface BoxTariffDb {
+export interface BoxTariffDb {
   id: number;
   geo_name: string;
   warehouse_name: string;

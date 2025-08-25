@@ -1,3 +1,6 @@
+import type { BoxTariff } from "../types/box-tariff-type.js";
+import type { BoxTariffDb } from "../types/box-tariff-db-type.js";
+
 export function mapBoxTariffToDb(tariff: BoxTariff): BoxTariffDb {
   return {
     id: tariff.id,
